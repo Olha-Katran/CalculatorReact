@@ -1,38 +1,106 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Times New Roman", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: lightcyan;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Calculator {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
 }
 
-.App-link {
-  color: #61dafb;
+.App {
+  box-shadow: 7px 10px 10px darkseagreen;
+  width: 100%;
+  max-width: 450px;
+  background-color: #155D27;
+  border-radius: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.display {
+  color: #DEE2E6;
+  padding: 1.5em;
+  text-align: right;
+  font-size: 2rem;
+  font-weight: bold;
+
+}
+
+.display span {
+  justify-content: flex-end;
+  overflow-wrap: break-word;
+}
+
+.history {
+  font-size: 1.5rem;
+  color: #ADB5BD;
+}
+
+.operators {
+  display: flex;
+}
+
+.operators button {
+  flex-grow: 1;
+  flex-wrap: wrap;
+  background-color: #ADB5BD;
+  font-size: 25px;
+  border: none;
+  color: darkslategrey;
+}
+
+button {
+  background-color: #155D27;
+  cursor: pointer;
+  padding: 1em;
+  font-size: 30px;
+}
+
+.digits {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.digits button {
+  flex-grow: 1;
+  flex-basis: 33.333%;
+  color: #ADB5BD;
+  border: none;
+}
+
+.zero {
+  border-bottom-left-radius: 20px;
+}
+
+.period {
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.equal {
+  border-bottom-right-radius: 20px;
+}
+
+.digits button:hover {
+  background-color: #1A7431;
+}
+
+.operators button:hover{
+  background-color: #4c956c;
+  opacity: 0.95;
+}
+
+.digits button:active {
+  background-color: #25A244;
+}
+
+.operators button:active {
+  background-color: #4c954d;
 }
