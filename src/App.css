@@ -26,11 +26,11 @@ body {
 
 .display {
   color: #DEE2E6;
-  padding: 1.5em;
+  padding: 1.5em 1.5em 10px 10px;
   text-align: right;
   font-size: 2rem;
   font-weight: bold;
-
+  margin: 0;
 }
 
 .display span {
@@ -47,7 +47,7 @@ body {
   display: flex;
 }
 
-.operators button {
+.operators  button {
   flex-grow: 1;
   flex-wrap: wrap;
   background-color: #ADB5BD;
@@ -55,6 +55,7 @@ body {
   border: none;
   color: darkslategrey;
 }
+
 
 button {
   background-color: #155D27;
@@ -79,7 +80,7 @@ button {
   border-bottom-left-radius: 20px;
 }
 
-.period {
+.solidSymbol {
   font-weight: bold;
   font-size: 40px;
 }
@@ -103,4 +104,20 @@ button {
 
 .operators button:active {
   background-color: #4c954d;
+}
+
+.expand-button {
+  height: 30px;
+  width: 30px;
+  font-size: 15px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: #ADB5BD;
+  color: darkslategrey;
+  border-radius: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }

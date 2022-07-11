@@ -7,6 +7,8 @@ const  App = () => {
       const [historyValue, setHistoryValue] = useState("");
 
       const operator = ['/', '*', '-', '+', '.'];
+      const brackets = ['(', ')'];
+
 
       const updateCalc = (value) => {
             if(
@@ -14,9 +16,33 @@ const  App = () => {
                 operator.includes(value) && operator.includes(currentValue.slice(-1))
             ) {
                   return;
+            } else if  (
+                brackets.includes(value) &&
+                brackets.includes(currentValue.slice(-1))
+            ){
+                  return;
             }
             setCurrentValue(currentValue + value);
+
+
       }
+
+      const negativeButton = () => {
+
+            if (currentValue > 0) {
+                  setCurrentValue(`-${currentValue}`)
+            } else {
+                  const positiveNumber = currentValue.slice(1);
+                  setCurrentValue(positiveNumber);
+            }
+      }
+
+      const handleAllClear = () => {
+            setCurrentValue("");
+            setHistoryValue("");
+      }
+
+
 
       const equalButton = (value) => {
             if(!operator.includes(value)) {
@@ -36,7 +62,10 @@ const  App = () => {
               calc={currentValue}
               handleEqual={equalButton}
               history={historyValue}
-              clearButton={clearButton} />
+              clearButton={clearButton}
+              handleClear={handleAllClear}
+              negativeButton={negativeButton}
+          />
       )
 }
 

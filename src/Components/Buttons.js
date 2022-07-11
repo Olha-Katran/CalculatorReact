@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+import { motion} from 'framer-motion'
 
 const Buttons = (props) => {
     const createNumberPad = () => {
@@ -15,14 +16,48 @@ const Buttons = (props) => {
     }
 
     return (
-        <div>
-            <div className="operators">
-                <button onClick={ () => props.handleClick("/") }><i className="fa-solid fa-divide"></i></button>
-                <button onClick={ () => props.handleClick("*") }><i className="fa-solid fa-xmark"></i></button>
-                <button onClick={ () => props.handleClick("-") }><i className="fa-solid fa-minus"></i></button>
-                <button onClick={ () => props.handleClick("+") }><i className="fa-solid fa-plus"></i></button>
-                <button onClick={props.clearButton} ><i className="fa-solid fa-c"></i></button>
-            </div   >
+        <motion.div>
+            {
+                props.open ?
+                    <motion.div layoutId="expandable-card">
+                    {/*<div>*/}
+                        <div className="operators">
+                            <button onClick={ () => props.handleClick("/") }><i className="fa-solid fa-divide"></i></button>
+                            <button onClick={ () => props.handleClick("*") }><i className="fa-solid fa-xmark"></i></button>
+                            <button onClick={ () => props.handleClick("-") }><i className="fa-solid fa-minus"></i></button>
+                            <button onClick={ () => props.handleClick("+") }><i className="fa-solid fa-plus"></i></button>
+                            <button onClick={props.clearButton} ><i className="fa-solid fa-c"></i></button>
+                        </div>
+
+                        <div className="operators hidden">
+                            <button
+                                onClick={props.negativeButton}><i className="fa-solid fa-plus-minus"></i></button>
+                            <button
+                                className="solidSymbol"
+                                onClick={ () => props.handleClick("(") }>(
+                            </button>
+                            <button
+                                className="solidSymbol"
+                                onClick={ () => props.handleClick(")") }>)
+                            </button>
+                            <button onClick={props.handleClear}>
+                                <i className="fa-solid fa-a"></i>
+                                <i className="fa-solid fa-c"></i>
+                                </button>
+                        </div>
+                    {/*</div>*/}
+                    </motion.div>
+                     :
+                    <motion.div layoutId="expandable-card">
+                        <div className="operators">
+                            <button onClick={ () => props.handleClick("/") }><i className="fa-solid fa-divide"></i></button>
+                            <button onClick={ () => props.handleClick("*") }><i className="fa-solid fa-xmark"></i></button>
+                            <button onClick={ () => props.handleClick("-") }><i className="fa-solid fa-minus"></i></button>
+                            <button onClick={ () => props.handleClick("+") }><i className="fa-solid fa-plus"></i></button>
+                            <button onClick={props.clearButton} ><i className="fa-solid fa-c"></i></button>
+                        </div>
+                    </motion.div>
+            }
 
             <div className="digits">
                 { createNumberPad() }
@@ -33,7 +68,7 @@ const Buttons = (props) => {
 
                 <button
                     onClick={ () => props.handleClick(".") }
-                    className="period">.
+                    className="solidSymbol">.
                 </button>
 
                 <button
@@ -42,7 +77,7 @@ const Buttons = (props) => {
                     <i className="fa-solid fa-equals"></i>
                 </button>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
