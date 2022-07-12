@@ -1,25 +1,72 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Calculator from "./Components/Calculator";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const  App = () => {
+      const [currentValue, setCurrentValue] = useState("");
+      const [historyValue, setHistoryValue] = useState("");
+
+      const operator = ['/', '*', '-', '+', '.'];
+      const brackets = ['(', ')'];
+
+
+      const updateCalc = (value) => {
+            if(
+                operator.includes(value) && currentValue === '' ||
+                operator.includes(value) && operator.includes(currentValue.slice(-1))
+            ) {
+                  return;
+            } else if  (
+                brackets.includes(value) &&
+                brackets.includes(currentValue.slice(-1))
+            ){
+                  return;
+            }
+            setCurrentValue(currentValue + value);
+
+
+      }
+
+      const negativeButton = () => {
+
+            if (currentValue > 0) {
+                  setCurrentValue(`-${currentValue}`)
+            } else {
+                  const positiveNumber = currentValue.slice(1);
+                  setCurrentValue(positiveNumber);
+            }
+      }
+
+      const handleAllClear = () => {
+            setCurrentValue("");
+            setHistoryValue("");
+      }
+
+
+
+      const equalButton = (value) => {
+            if(!operator.includes(value)) {
+                  setHistoryValue(currentValue)
+                  setCurrentValue(eval(currentValue + value).toString())
+            }
+      }
+
+      const clearButton = () => {
+            const value = currentValue.slice(0, -1);
+            setCurrentValue(value);
+      }
+
+      return (
+          <Calculator
+              handleClick={updateCalc}
+              calc={currentValue}
+              handleEqual={equalButton}
+              history={historyValue}
+              clearButton={clearButton}
+              handleClear={handleAllClear}
+              negativeButton={negativeButton}
+          />
+      )
 }
 
 export default App;
